@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Grid Tycoon - PC Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pc-style.css">
+</head>
+<body>
+    <div class="title-screen" id="title-screen">
+        <canvas id="particles-canvas"></canvas>
+        <div class="electric-grid"></div>
+        <div class="title-content">
+            <div class="title-logo">
+                <div class="logo-icon-container">
+                    <div class="logo-icon">⚡</div>
+                    <div class="icon-ring"></div>
+                    <div class="icon-ring ring-2"></div>
+                </div>
+                <h1 class="logo-text">
+                    <span class="letter">P</span>
+                    <span class="letter">O</span>
+                    <span class="letter">W</span>
+                    <span class="letter">E</span>
+                    <span class="letter">R</span>
+                    <span class="letter"> </span>
+                    <span class="letter">G</span>
+                    <span class="letter">R</span>
+                    <span class="letter">I</span>
+                    <span class="letter">D</span>
+                </h1>
+                <div class="logo-subtitle">T Y C O O N</div>
+                <div class="logo-tagline">Build Your Energy Empire</div>
+            </div>
+            <button class="start-btn" id="start-btn">
+                <span class="btn-inner">START GAME</span>
+                <span class="btn-glow"></span>
+            </button>
+            <div class="version">PC Edition v1.0</div>
+        </div>
+    </div>
+
+    <div class="game-container" id="game-container">
+        <div class="header">
+            <div class="header-top">
+                <div class="header-title">POWER GRID TYCOON</div>
+                <button class="prestige-btn" id="prestige-btn">
+                    <span class="prestige-icon">⭐</span>
+                    <span class="prestige-text">PRESTIGE</span>
+                </button>
+            </div>
+            <div class="header-balance">
+                <div class="balance-amount" id="money">0</div>
+                <div class="balance-unit">MW</div>
+            </div>
+            <div class="prestige-info" id="prestige-info">
+                <span class="prestige-stars">⭐ <span id="prestige-count">0</span></span>
+                <span class="prestige-multiplier">×<span id="prestige-multiplier">1.0</span></span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-data">
+                            <div class="metric-value" id="generation">0</div>
+                            <div class="metric-label">Generation</div>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-data">
+                            <div class="metric-value" id="demand">50</div>
+                            <div class="metric-label">Demand</div>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">💰</div>
+                        <div class="metric-data">
+                            <div class="metric-value income-value" id="income">+0</div>
+                            <div class="metric-label">Per Second</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="generators-panel">
+                <div class="generator" data-type="solar">
+                    <div class="gen-header">
+                        <div class="gen-icon">☀️</div>
+                        <div class="gen-title">
+                            <div class="gen-name">Solar Panel</div>
+                            <div class="gen-count"><span id="solar-count">0</span> owned</div>
+                        </div>
+                    </div>
+                    <div class="gen-output">
+                        <div class="output-item">
+                            <span class="output-label">Power</span>
+                            <span class="output-value">+5/s</span>
+                        </div>
+                        <div class="output-item">
+                            <span class="output-label">Income</span>
+                            <span class="output-value income">+2/s</span>
+                        </div>
+                    </div>
+                    <button class="buy-btn" id="solar-btn">
+                        <span class="btn-text">BUY</span>
+                        <span class="btn-price" data-price="10">10</span>
+                    </button>
+                </div>
+
+                <div class="generator" data-type="wind">
+                    <div class="gen-header">
+                        <div class="gen-icon">💨</div>
+                        <div class="gen-title">
+                            <div class="gen-name">Wind Turbine</div>
+                            <div class="gen-count"><span id="wind-count">0</span> owned</div>
+                        </div>
+                    </div>
+                    <div class="gen-output">
+                        <div class="output-item">
+                            <span class="output-label">Power</span>
+                            <span class="output-value">+15/s</span>
+                        </div>
+                        <div class="output-item">
+                            <span class="output-label">Income</span>
+                            <span class="output-value income">+8/s</span>
+                        </div>
+                    </div>
+                    <button class="buy-btn" id="wind-btn">
+                        <span class="btn-text">BUY</span>
+                        <span class="btn-price" data-price="100">100</span>
+                    </button>
+                </div>
+
+                <div class="generator" data-type="coal">
+                    <div class="gen-header">
+                        <div class="gen-icon">🏭</div>
+                        <div class="gen-title">
+                            <div class="gen-name">Coal Plant</div>
+                            <div class="gen-count"><span id="coal-count">0</span> owned</div>
+                        </div>
+                    </div>
+                    <div class="gen-output">
+                        <div class="output-item">
+                            <span class="output-label">Power</span>
+                            <span class="output-value">+50/s</span>
+                        </div>
+                        <div class="output-item">
+                            <span class="output-label">Income</span>
+                            <span class="output-value income">+30/s</span>
+                        </div>
+                    </div>
+                    <button class="buy-btn" id="coal-btn">
+                        <span class="btn-text">BUY</span>
+                        <span class="btn-price" data-price="500">500</span>
+                    </button>
+                </div>
+
+                <div class="generator" data-type="nuclear">
+                    <div class="gen-header">
+                        <div class="gen-icon">☢️</div>
+                        <div class="gen-title">
+                            <div class="gen-name">Nuclear Reactor</div>
+                            <div class="gen-count"><span id="nuclear-count">0</span> owned</div>
+                        </div>
+                    </div>
+                    <div class="gen-output">
+                        <div class="output-item">
+                            <span class="output-label">Power</span>
+                            <span class="output-value">+200/s</span>
+                        </div>
+                        <div class="output-item">
+                            <span class="output-label">Income</span>
+                            <span class="output-value income">+150/s</span>
+                        </div>
+                    </div>
+                    <button class="buy-btn" id="nuclear-btn">
+                        <span class="btn-text">BUY</span>
+                        <span class="btn-price" data-price="3000">3K</span>
+                    </button>
+                </div>
+
+                <div class="generator" data-type="fusion">
+                    <div class="gen-header">
+                        <div class="gen-icon">⚛️</div>
+                        <div class="gen-title">
+                            <div class="gen-name">Fusion Plant</div>
+                            <div class="gen-count"><span id="fusion-count">0</span> owned</div>
+                        </div>
+                    </div>
+                    <div class="gen-output">
+                        <div class="output-item">
+                            <span class="output-label">Power</span>
+                            <span class="output-value">+1K/s</span>
+                        </div>
+                        <div class="output-item">
+                            <span class="output-label">Income</span>
+                            <span class="output-value income">+800/s</span>
+                        </div>
+                    </div>
+                    <button class="buy-btn" id="fusion-btn">
+                        <span class="btn-text">BUY</span>
+                        <span class="btn-price" data-price="20000">20K</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="prestige-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-icon">⭐</div>
+                <div class="modal-title">PRESTIGE AVAILABLE</div>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">Reset your progress to gain a permanent multiplier</p>
+                <div class="prestige-reward">
+                    <div class="reward-label">You will gain</div>
+                    <div class="reward-value"><span id="prestige-reward">0</span> ⭐</div>
+                    <div class="reward-sublabel">New multiplier: ×<span id="new-multiplier">1.0</span></div>
+                </div>
+                <div class="prestige-warning">All generators and MW will reset</div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" id="prestige-cancel">CANCEL</button>
+                <button class="modal-btn modal-btn-primary" id="prestige-confirm">PRESTIGE</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="pc-game.js"></script>
+</body>
+</html>
